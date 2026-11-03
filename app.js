@@ -27,6 +27,7 @@ const slug = (t) => t.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g
 
 function card(g) {
   const badges = [
+    g.down && `<span class="badge down">⛔ Offline</span>`,
     g.lauta && `<span class="badge lauta">⚡ Lauta</span>`,
     g.hot && `<span class="badge hot">🔥 Trending</span>`,
     g.mp && `<span class="badge">👥 Online</span>`,
@@ -36,8 +37,8 @@ function card(g) {
   const repo = g.repo
     ? `<a class="alt repo" href="https://github.com/${esc(g.repo)}" target="_blank" rel="noopener">★ ${g.stars.toLocaleString()}</a>` : "";
   return `
-    <article class="card g-${g.genre.toLowerCase()}">
-      <a class="play" href="${esc(g.url)}" target="_blank" rel="noopener" aria-label="Play ${esc(g.title)}"></a>
+    <article class="card g-${g.genre.toLowerCase()}${g.down ? " down" : ""}">
+      ${g.down ? "" : `<a class="play" href="${esc(g.url)}" target="_blank" rel="noopener" aria-label="Play ${esc(g.title)}"></a>`}
       <div class="art">
         <img src="images/${slug(g.title)}.jpg" alt="" loading="lazy" onerror="this.remove()">
         <span class="year">${g.year}</span>
@@ -49,7 +50,7 @@ function card(g) {
         <div class="badges">${badges}</div>
         <h2>${esc(g.title)}</h2>
         <p class="meta">${esc(g.genre)} · port by ${esc(g.by)}</p>
-        ${g.note ? `<p class="note">${esc(g.note)}</p>` : ""}
+        ${g.down ? `<p class="note">Host went offline. Check back later.</p>` : g.note ? `<p class="note">${esc(g.note)}</p>` : ""}
         <p class="host">${esc(host(g.url))}</p>
         ${alts || repo ? `<div class="alts">${alts}${repo}</div>` : ""}
       </div>
@@ -57,7 +58,7 @@ function card(g) {
 }
 
 function render() {
-  const list = GAMES.filter(matches).sort(SORTS[state.sort]);
+  const list = GAMES.filter(matches).sort((a, b) => (a.down || 0) - (b.down || 0) || SORTS[state.sort](a, b));
   $("grid").innerHTML = list.map(card).join("");
   $("empty").hidden = list.length > 0;
   $("count").textContent = list.length === GAMES.length ? GAMES.length : `${list.length}/${GAMES.length}`;
