@@ -22,6 +22,8 @@ function matches(g) {
 
 const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]);
 const host = (url) => new URL(url).hostname.replace(/^www\./, "");
+// Must match slug() in the art generation script: images/<slug>.jpg
+const slug = (t) => t.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
 
 function card(g) {
   const badges = [
@@ -37,6 +39,7 @@ function card(g) {
     <article class="card g-${g.genre.toLowerCase()}">
       <a class="play" href="${esc(g.url)}" target="_blank" rel="noopener" aria-label="Play ${esc(g.title)}"></a>
       <div class="art">
+        <img src="images/${slug(g.title)}.jpg" alt="" loading="lazy" onerror="this.remove()">
         <span class="year">${g.year}</span>
         <span class="plat">${esc(g.platform)}</span>
         <span class="initial" aria-hidden="true">${esc(g.title[0])}</span>

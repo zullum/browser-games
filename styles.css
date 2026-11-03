@@ -48,13 +48,24 @@ input:focus, select:focus { outline: 2px solid var(--accent); outline-offset: -1
 .card .play { position: absolute; inset: 0; z-index: 1; }
 .card .play:focus-visible { outline: 3px solid var(--accent); border-radius: 16px; }
 
-.art { position: relative; height: 140px; overflow: hidden; background: var(--c1); }
+.art { position: relative; height: 150px; overflow: hidden; background: var(--c1); }
 .art::before {
   content: ""; position: absolute; inset: 0;
   background: linear-gradient(135deg, var(--c1), var(--c2)),
               repeating-linear-gradient(0deg, #0000 0 3px, #0002 3px 4px);
   background-blend-mode: multiply;
 }
+.art img {
+  position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0;
+  transition: transform .4s;
+}
+.card:hover .art img { transform: scale(1.06); }
+.art::after {
+  content: ""; position: absolute; inset: 0; pointer-events: none;
+  background: linear-gradient(180deg, #0005 0%, #0000 35%, #0000 60%, var(--panel) 100%);
+}
+.art img ~ .initial { display: none; }
+.year, .plat, .cta { z-index: 1; }
 .initial {
   position: absolute; right: -6px; bottom: -38px; font-size: 170px; font-weight: 800;
   color: #ffffff22; line-height: 1;
