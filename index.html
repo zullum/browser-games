@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Browser Arcade</title>
+  <meta name="description" content="Classic PC and console games ported to the browser. Click a card and play.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,800&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="hero">
+    <p class="kicker">INSERT COIN · <span id="count"></span> GAMES</p>
+    <h1>Browser <em>Arcade</em></h1>
+    <p class="lede">Classic PC and console games ported to the browser. No install: click a card and play.</p>
+  </header>
+
+  <section class="toolbar" aria-label="Filters">
+    <input id="q" type="search" placeholder="Search games, ports, platforms…" autocomplete="off">
+    <select id="sort" aria-label="Sort">
+      <option value="featured">Featured</option>
+      <option value="az">A → Z</option>
+      <option value="new">Newest first</option>
+      <option value="old">Oldest first</option>
+      <option value="stars">GitHub stars</option>
+    </select>
+    <div class="chips" id="genres"></div>
+    <div class="chips" id="flags">
+      <button data-flag="lauta">⚡ Lauta ports</button>
+      <button data-flag="mp">👥 Multiplayer</button>
+      <button data-flag="hot">🔥 Trending</button>
+      <button data-flag="repo">★ Open source</button>
+    </div>
+  </section>
+
+  <main id="grid" class="grid"></main>
+  <p id="empty" class="empty" hidden>No games match. Try another filter.</p>
+
+  <footer>
+    Unofficial fan ports hosted by their creators. This page only links to them.
+    Sources: <a href="https://playgamesinbrowser.com/">playgamesinbrowser.com</a>,
+    <a href="https://x.com/LautaTWT">@LautaTWT</a>, GitHub.
+  </footer>
+  <script type="module" src="app.js"></script>
+</body>
+</html>
