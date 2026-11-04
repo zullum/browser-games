@@ -68,6 +68,7 @@ export const GAMES = [
   { title: "Stardew Valley", year: 2016, platform: "PC", genre: "RPG", by: "cirsius", url: "https://wasm.rip/files/stardewvalley/index.html" },
   { title: "Hollow Knight", year: 2017, platform: "PC", genre: "Platformer", by: "dezm0n", url: "https://fnaffree.io/hollow-knight" },
   { title: "Sonic Mania", year: 2017, platform: "PC", genre: "Platformer", by: "Crunch Arcade", url: "https://ugbontop.github.io/Sonic-Mania-InYourBrowser/" },
+  { title: "New Super Mario Bros. Wii", year: 2009, platform: "Wii", genre: "Platformer", by: "teaser.lua", url: "https://teaserlua.github.io/nsmbw-web-port/", repo: "teaserlua/nsmbw-web-port", stars: 8, note: "Local co-op: Controller 1 and 2" },
   { title: "Super Mario Galaxy", year: 2007, platform: "Wii", genre: "Platformer", by: "T4ctica1", url: "https://hedgeplays2.github.io/SMGwebport/" },
   { title: "Among Us", year: 2018, platform: "PC", genre: "Puzzle", by: "wasm.rip", url: "https://wasm.rip/files/amongus/index.html" },
 ];
